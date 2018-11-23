@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.infosys.oracle.dao.SqlDao" >
+    <delete id="clear">
+		delete from ${table} where exists (select 1 from sync_rows where sync_rows.sync_id = '${syncId}' and to_char (${table}.sourceid) = sync_rows.object_id  )
+    </delete>
+</mapper>
